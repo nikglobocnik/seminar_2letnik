@@ -1,0 +1,834 @@
+%\documentclass[handout]{beamer}
+\documentclass[11pt,serif]{beamer}
+
+\usetheme{Madrid}
+\colorlet{beamer@blendedblue}{green!40!black}
+
+\setbeamertemplate{navigation symbols}{}%remove navigation symbols
+
+
+\usepackage[slovene]{babel}
+\usepackage[OT2,T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{colortbl}
+\usepackage[all]{xy}
+
+\newcommand{\floor}[1]{\left\lfloor #1 \right\rfloor} 
+
+\usepackage{palatino}\usefonttheme{professionalfonts}
+
+
+\newtheorem{izrek}[theorem]{Izrek}
+\newtheorem{lema}[theorem]{Lema}
+\newtheorem{trditev}[theorem]{Trditev}
+\newtheorem{posledica}[theorem]{Posledica}
+\newtheorem{vprasanje}[theorem]{Vpra\v sanje}
+\newtheorem{domneva}[theorem]{Domneva}
+\newtheorem{dokaz}[theorem]{Dokaz}
+\newtheorem{definicija}{Definicija}
+\newtheorem{zgled}{Zgled}
+\newtheorem{primer}{Primer}
+
+\newcommand{\NN}{\mathbb{N}}
+\newcommand{\ZZ}{\mathbb{Z}}
+
+\newcommand{\Mod}[1]{\ (\mathrm{mod}\ #1)}
+
+
+\beamertemplatetransparentcovereddynamic
+
+\title{Vsota štirih kvadratov in Waringov problem}
+\author{Nik Globočnik}
+\institute{Seminar, FMF}
+\date{\today}
+
+\begin{document}
+%%%%%
+\frame{\titlepage}
+%%%%%
+\frame{
+\frametitle{Fermatov izrek o vsotah dveh kvadratov}
+
+Kdaj lahko število zapišemo kot vsoto dveh kvadratov celih števil? \pause
+
+\begin{align*}
+ 1 &= 1^2 + 0^2 \\ \pause
+ 2 &= 1^2 + 1^2 \\ \pause
+ 3 &=\; ? \\ \pause
+ 4 &= 2^2 + 0^2 \\ \pause
+ 5 &= 2^2 + 1^2 \\ \pause
+ 6 &= \; ?\\ \pause
+ 7 &= \; ? \pause
+\end{align*}
+
+}
+
+\frame{
+\frametitle{Fermatov izrek o vsotah dveh kvadratov}
+
+Kdaj lahko praštevilo $p$ zapišemo kot vsoto dveh kvadratov celih števil? \pause
+
+\begin{center}
+  \begin{tabular}{ccc}
+    $p=2$ & $p\equiv 1 \Mod{4}$ & $p\equiv 3 \Mod{4}$ \\
+    \hline \pause
+    $2=1^2+1^2$ & $5=2^2+1^2$ & $3 = \; ? $ \\
+                & $13=3^2+2^2$ & $7 = \; ? $ \\
+                & $17 = 4^2+1^2$ & $11 = \; ?$ \\
+                & $29=5^2+2^2$ & $19= \; ?$ \\
+                & $\vdots$ & $\vdots$
+  \end{tabular}
+\end{center}
+
+\pause
+
+\begin{izrek}[Fermat]
+  Naravno število $n$ lahko zapišemo kot vsoto dveh kvadratov celih števil natanko tedaj, ko ima vsak prafaktor $p$ števila $n$, ki zadošča $p\equiv 3 \Mod{4}$, v praštevilskem razcepu sod eksponent.
+\end{izrek}
+
+}
+
+\frame{
+\frametitle{Nekaj izrekov}
+
+
+\begin{izrek}[Legendre]
+  Naravno število $n$ lahko zapišemo kot vsoto treh kvadratov celih števil natanko tedaj, ko $n$ ni oblike $4k(8\ell + 7)$.
+\end{izrek}
+
+}
+
+
+\frame{
+\frametitle{Vsota štirih kvadratov}
+\framesubtitle{Lema}
+
+
+\begin{lema}
+  Naj bo $p$ liho praštevilo. Potem obstajajo cela števila $x$, $y$ in $m$, da je $$ 1+x^2 + y^2 = mp, \quad 0<m<p.$$
+\end{lema}
+
+\pause
+
+\begin{primer}
+  Za $p=3$ imamo $1+ 1^2 + 2^2 = 2 \cdot 3$, za $p=7$ pa $1 + 2^2 + 4^2 = 3\cdot 7$.
+\end{primer}
+}
+
+\frame{
+\frametitle{Vsota štirih kvadratov}
+\framesubtitle{Dokaz leme}
+
+\begin{itemize}
+  
+  \item Za $x \in \left\{0,1,\ldots,\frac{p-1}{2}\right\}$ imajo števila $x^2$ same različne ostanke pri deljenju s $p$. \\ \footnotesize Premislek: 
+  \pause
+   Če bi bilo $x_1^2 \equiv x_2^2 \Mod{p}$, bi to pomenilo $p \mid (x_1-x_2)(x_1 + x_2)$. 
+  \pause
+   Od tod pa bi sledilo $$x_1 \equiv \pm x_2 \Mod{p},$$ kar pa je protislovje. \normalsize
+  
+  \pause
+
+  \vskip 0.5cm
+  \item Podobno sklepamo, da dajo za $y \in \left\{0,1,\ldots,\frac{p-1}{2}\right\}$, števila $-1-y^2$ različne ostanke pri deljenju z $p$.
+  
+  \pause
+
+  \vskip 0.5cm
+  
+  \item V teh dveh množicah imamo skupno $p+1$ števil, ampak samo $p$ možnih ostankov pri deljenju s $p$.
+\end{itemize}
+
+}
+
+\frame{
+\frametitle{Vsota štirih kvadratov}
+\framesubtitle{Dokaz leme}
+
+\begin{itemize}
+  
+  \item Potem je vsaj eno število $x^2$ kongruentno $-1-y^2$ po modulu $p$. 
+  \pause
+   Torej $$x^2 \equiv -1-y^2 \Mod{p}\; 
+  \pause
+   \Rightarrow \; 
+  \pause
+   1+x^2+y^2 \equiv 0 \Mod{p}$$ $$
+  \pause
+   \Rightarrow \; 
+  \pause
+   1+x^2+y^2 = mp.$$
+  
+  \pause
+
+  \vskip 0.5cm
+  \item Rabimo še oceno za $m$. 
+  \pause
+   Ker velja $x^2 < \left(\frac{p}{2}\right)^2$ in $y^2 < \left(\frac{p}{2}\right)^2$, je $$mp = 1+x^2+y^2 
+  \pause
+   < 
+  \pause
+   1+ 
+  \pause
+   2\cdot 
+  \pause
+   \left(\frac{p}{2}\right)^2 
+  \pause
+   < 
+  \pause
+   p^2.$$
+  
+  \pause
+
+  \vskip 0.5cm
+  
+  \item In zato $m<p$.\hfill\qedsymbol
+\end{itemize}
+
+}
+
+\frame{
+\frametitle{Vsota štirih kvadratov}
+\framesubtitle{Izrek}
+
+\begin{izrek}[Lagrange]
+  Vsako naravno število lahko zapišemo kot vsoto štirih kvadratov celih  števil.
+\end{izrek}
+\pause
+\vskip 0.5cm
+
+\begin{primer}
+  $5=2^2+1^2+0^2+0^2$, $21 = 4^2+2^2+1^1+0^2$, $127=11^2+2^2+1^2+1^2$.
+\end{primer}
+
+}
+
+\frame{
+\frametitle{Vsota štirih kvadratov}
+\framesubtitle{Dokaz izreka}
+
+\begin{itemize}
+
+	\item Najprej si oglejmo t.\ i.\ \emph{Eulerjevo identiteto}:
+  \pause
+  \begin{align*}
+    (x_1^2+x_2^2+x_3^2+x_4^2)&(y_1^2+y_2^2+y_3^2+y_4^2) =\\
+                             &\phantom{++} (x_1y_1+x_2y_2+x_3y_3+x_4y_4)^2\\
+                             &+ (x_1y_2-x_2y_1+x_3y_4-x_4y_3)^2\\
+                             &+ (x_1y_3-x_3y_1+x_4y_2-x_2y_4)^2\\
+                             &+ (x_1y_4-x_4y_1+x_2y_3-x_3y_2)^2 .    
+  \end{align*} 
+  \pause
+
+  \item Vidimo, da je produkt dveh števil, ki sta vsoti štirih kvadratov, tudi vsota štirih kvadratov.
+  
+  \pause
+  \vskip 0.5cm
+
+  \item Za število $1$ je izrek trivialen. 
+  %\pause
+   Vemo, da lahko vsako naravno število $>1$ zapišemo kot produkt praštevil, zato je dovolj pokazati izrek za vsa praštevila.
+\end{itemize}
+
+}
+
+\frame{
+\frametitle{Vsota štirih kvadratov}
+\framesubtitle{Dokaz izreka}
+
+\begin{itemize}
+
+	\item Za $p=2$ imamo $2=1^2+1^2+0^2+0^2$.
+  \pause
+  \vskip 0.5cm
+
+  \item V primeru, ko je $p$ lih, si pomagamo s prej dokazano lemo.
+  \pause
+  \vskip 0.5cm
+
+  \item Iz leme direktno sledi, da za liho praštevilo $p$ obstaja $m$, $0<m<p$, da je $$mp=x_1^2+x_2^2+x_3^2+x_4^2.$$
+  \pause
+  
+  \item Dokazali bomo, da je najmanjši tak $m$ kar $m=1$.
+\end{itemize}
+
+}
+
+\frame{
+\frametitle{Vsota štirih kvadratov}
+\framesubtitle{Dokaz izreka}
+
+\begin{itemize}
+
+	\item Označimo z $m_0$ najmanjši tak $m$, da je $$mp=x_1^2+x_2^2+x_3^2+x_4^2.$$
+  \pause
+  
+  \item Če je $m_0=1$ smo končali.
+  \pause
+  \vskip 0.5cm
+
+  \item Predpostavimo sedaj, da je $1< m_0 <p$.
+
+\end{itemize}
+
+}
+
+\frame{
+\frametitle{Vsota štirih kvadratov}
+\framesubtitle{Dokaz izreka}
+
+\begin{itemize}
+
+  \item Če je $m_0$ sod, so vsi $x_i$ sodi ali lihi, ali pa sta po dva soda in po dva liha.
+  \pause
+  \vskip 0.5cm
+
+  \item Recimo, da sta $x_1$ in $x_2$ soda. 
+  \pause
+   Potem so v vsakem od zgornjih treh primerov $x_1\pm x_2$ in $x_3\pm x_4$ sodi. 
+  \pause
+  \vskip 0.5cm
+
+  \item Zato lahko zapišemo $$\frac{m_0}{2}p=\left(\frac{x_1+x_2}{2}\right)^2 + \left(\frac{x_1-x_2}{2}\right)^2 + \left(\frac{x_3+x_4}{2}\right)^2 + \left(\frac{x_3-x_4}{2}\right)^2,$$ kar je v protislovju z minimalnostjo $m_0$.
+\end{itemize}
+
+}
+
+\frame{
+\frametitle{Vsota štirih kvadratov}
+\framesubtitle{Dokaz izreka}
+
+\begin{itemize}
+
+  \item Izberimo sedaj tak $y_i$, da je $$y_i \equiv x_i \Mod{m_0}, \quad |y_i|<\frac{m_0}{2}.$$ %\pause
+   (To lahko storimo, saj je $\{y \mid -\frac{m_0-1}{2}\leqslant y \leqslant \frac{m_0-1}{2} \}$ popoln sistem ostankov modulo $m_0$.)
+  \pause
+  \vskip 0.5cm
+
+  \item Opazimo, da ne morajo biti vsi $x_i$ deljivi z $m_0$, saj bi potem imeli 
+  \pause
+   $$m_0^2 \mid m_0p 
+   %\pause 
+   \Rightarrow 
+   %\pause 
+   m_0 \mid p,$$
+  \pause
+   kar je protislovje.
+\end{itemize}
+
+}
+
+
+
+\frame{
+\frametitle{Vsota štirih kvadratov}
+\framesubtitle{Dokaz izreka}
+
+\begin{itemize}
+
+  \item Od tod sledi $$y_1^2+y_2^2+y_3^2+y_4^2 >0.$$
+  \pause
+
+  \item Imamo tudi $$y_1^2+y_2^2+y_3^2+y_4^2 < m_0^2\; \text{ in }\;  y_1^2+y_2^2+y_3^2+y_4^2 \equiv 0\Mod{m_0}.$$
+  \pause
+
+  \item Zato je $$x_1^2+x_2^2+x_3^2+x_4^2 = m_0p \;\; (m_0<p)$$ 
+  in $$y_1^2+y_2^2+y_3^2+y_4^2 = m_0 m_1\;\; (0< m_1 < m_0).$$
+\end{itemize}
+
+}
+
+\frame{
+\frametitle{Vsota štirih kvadratov}
+\framesubtitle{Dokaz izreka}
+
+\begin{itemize}
+
+  \item Dobimo $$m_1m_0^2p=z_1^2+z_2^2+z_3^2+z_4^4,$$ kjer so $z_i$ primerni členi iz \emph{Eulerjeve identitete}.
+  \pause
+  \vskip 0.5cm
+
+  \item Oglejmo si $z_1=x_1y_1+x_2y_2+x_3y_3+x_4y_4$: 
+  \pause
+  $$z_1 = x_1y_1+x_2y_2+x_3y_3+x_4y_4 
+  \pause
+  \equiv 
+  %\pause 
+  x_1^2+x_2^2+x_3^2+x_4^2 
+  %\pause 
+  \equiv 
+  %\pause 
+  0 \Mod{m_0}.$$
+  %\pause 
+
+  \item Torej je $z_1\equiv 0 \Mod{m_0}$, podobmo pa pokažemo še za ostale $z_i$.
+\end{itemize}
+
+}
+
+\frame{
+\frametitle{Vsota štirih kvadratov}
+\framesubtitle{Dokaz izreka}
+
+\begin{itemize}
+
+  \item Torej lahko pišemo $$z_i = m_0 w_i,$$ za nek $w_i \in \mathbb{Z}$.
+  \pause
+  \vskip 0.5cm
+
+  \item Če enakost $$m_1 m_0^2 p = z_1^2+z_2^2+z_3^2+z_4^2$$ delimo z $m_0^2$ dobimo $$m_1p = w_1^2+w_2^2+w_3^2+w_4^2,$$ kar pa je spet protislovje z minimalnostjo $m_0$.
+  \pause
+  \vskip 0.5cm
+
+  \item Zato je $m_0=1$. \hfill \qedsymbol
+\end{itemize}
+
+}
+
+\frame{
+\frametitle{Vsota štirih kvadratov}
+
+
+  \begin{align*}
+    1 &= 1^2+0^2+0^2+0^2 \\ \pause
+    2 &= 1^2+1^2+0^2+0^2 \\ \pause
+    3 &= 1^2 +1^2+1^2+0^2 \\ \pause
+    4 &= 2^2+0^2+0^2+0^2 \\ \pause
+    5 &= 2^2 + 1^2+0^2+0^2 \\ \pause
+    6 &= 2^2 + 1^2+1^2+0^2 \\ \pause
+    7 &= 2^2 + 1^2+1^2+1^2 \\ \pause
+    8 &= 2^2+2^2+0^2+0^2 \\ \pause
+    9 &= 3^2+0^2+0^2+0^2 \\ \pause
+    10 &= 3^2+1^2+0^2+0^2
+  \end{align*}
+
+
+}
+
+
+
+\frame{
+\frametitle{Vsota štirih kvadratov}
+
+Obstaja tudi izrek, ki pove, koliko rešitev ima enačba $$n=x_1^2 + x_2^2+x_3^2+x_4^2$$ v celih številih, za $n\in\NN$.
+
+\pause
+
+
+\begin{izrek}
+Označimo z $r_4(n)$ število celištevilskih rešitev enačbe $$n=x_1^2 + x_2^2+x_3^2+x_4^2,$$ za $n\in\NN$. Imamo $$r_4(n)= 8\sum_{\substack{d\mid n \\ 4 \nmid d}}d.$$
+\end{izrek}
+
+}
+
+\frame{
+\frametitle{Vsota štirih kvadratov}
+
+\begin{zgled}
+  Za $n=1$ imamo $$r_4(1)=8,$$
+  \pause
+  za $n=2$ imamo $$r_4(2)=8(1+2)=24$$
+  \pause
+  in za $n=3$ $$r_4(3)=8(1+3)=48.$$
+\end{zgled}
+
+}
+
+\frame{
+\frametitle{Waringov problem}
+
+Z $n\in\NN$ si oglejmo enačbo $$n = x_1^k + x_2^k + \cdots + x_s^k, \quad x_i\in\mathbb{N}_0,\ k > 1.$$
+
+\pause
+
+
+Če fiksiramo $k$ in je $s$ premajhen, zgornja enačba nima rešitve za vsak $n\in\mathbb{N}$.
+
+\pause
+
+
+Porodi se vprašanje, če za dan $k$ obstaja tak $s=s(k)$, da ima zgornja enačba rešitev za vsak $n\in\NN$.
+
+}
+
+
+
+\frame{
+\frametitle{Waringov problem, število $g(k)$}
+
+\begin{itemize}
+
+  \item Če obstaja tak $s$, da ima enačba $n=x_1^k+\cdots + x_s^k$ za fiksen $k$ vedno rešitev, potem to velja tudi za vsak $s'>s$.
+  
+  \pause
+
+  \vskip 0.5cm
+  \item Torej mora obstajati najmanjši tak $s$.
+  
+  \pause
+
+\end{itemize}
+
+\begin{definicija}
+  Naj bo $k\geqslant 2$. Število $g=g(k)$ je najmanjše naravno število, za katero je mogoče vsako  naravno število zapisati kot vsoto $g$ $k$-tih potenc nenegativnih celih števil.
+\end{definicija}
+\pause
+
+}
+
+\frame{
+\frametitle{Waringov problem, število $g(k)$}
+
+\begin{align*}
+  454 &= 3^2+11^2+18^2 \\ 
+  \pause
+      &= 1^3+1^3+1^3+3^3+3^3+3^3+3^3+7^3 \\ 
+      \pause
+      &= 1^4 + 2^4+2^4+2^4+3^4+3^4+3^4+3^4+3^4 \\ 
+      \pause
+      &= 1^5+1^5+1^5+1^5+1^5+1^5 + 2^5 + 2^5 + 2^5 + 2^5 + 2^5 \\
+       &\hspace{0.5cm}+ 2^5 + 2^5 + 2^5 + 2^5 + 2^5 + 2^5 + 2^5 + 2^5 + 2^5
+\end{align*}
+\pause
+
+Lahko sklepamo, da je $g(2)\geqslant 3$, $g(4) \geqslant 8$, $g(4)\geqslant 9$ in $g(5) \geqslant 20$.
+
+}
+
+\frame{
+\frametitle{Waringov problem, število $g(k)$}
+
+Iz zgodovine:
+
+\pause
+
+
+\begin{itemize}
+
+  \item Leta 1770 je Waring izjavil, da se da vsako naravno število zapisati kot vsoto 4 kvadratov, 9 kubov in 19 bikvadratov (četrtih potenc)
+  
+  \pause
+
+  \vskip 0.5cm
+  \item Hilbert je leta 1909 dokazal, da se da to storiti za vsak $k$.
+  \pause
+
+\end{itemize}
+\vskip 0.5cm
+Dokazali smo že, da je $g(2)=4$.
+}
+
+
+
+
+
+
+
+\frame{
+\frametitle{Waringov problem, število $g(k)$}
+
+\begin{izrek}[Hilbert-Waring]
+  Za vsa naravna števila $n\geqslant 2$ obstaja tako končno število $g=g(k)$, da je možno $n$ zapisati kot vsoto najmanj $g$ $k$-tih potenc nenegativnih celih števil.
+\end{izrek}
+
+}
+
+
+
+\frame{
+\frametitle{Waringov problem, število $g(k)$}
+
+\begin{izrek}
+  $g(4)$ obstaja in je $\leqslant 53$.
+\end{izrek}
+}
+
+\frame{
+\frametitle{Waringov problem, število $g(k)$}
+\framesubtitle{Dokaz izreka}
+
+\begin{itemize}
+
+	\item Označimo z $B_s$ število, ki je vsota $s$ četrtih potenc.
+  
+  \pause
+
+  \vskip 0.5cm 
+
+\item Velja identiteta \begin{align*} 6(a^2+b^2+c^2+d^2)^2 &= (a+b)^4 + (a-b)^4+(c+d)^4 + (c-d)^4\\ &+ (a+c)^4 + (a-c)^4 + (b+d)^4 + (b-d)^4 \\ &+ (a+d)^4 + (a-d)^4 + (b+c)^4 + (b-c)^4.\end{align*}
+  
+  \pause
+
+  \vskip 0.5cm
+
+  \item Od tod je $6(a^2+b^2+c^2+d^2)^2 = B_{12}$
+  
+  \pause
+
+  \vskip 0.5cm
+
+  \item Iz Lagrangeovega izreka o štirih kvadratih potem sledi $$6x^2=B_{12},$$ za vsak $x\in\NN.$ 
+  
+  \pause
+
+  \vskip 0.5cm
+
+  
+\end{itemize}
+}
+
+\frame{
+\frametitle{Waringov problem, število $g(k)$}
+\framesubtitle{Dokaz izreka}
+
+\begin{itemize}
+
+  \item Vemo že, da je vsako naravno število $n$ oblike $6t+r$ za $0\leqslant r \leqslant 5.$
+  
+  \pause
+
+  \vskip 0.5cm
+
+  \item Če še enkrat uporabimo izrek o štirih kvadratih dobimo
+  \pause
+   $$n=6(x_1^2+x_2^2+x_3^2+x_4^2)+r.$$
+  
+  \pause
+
+  \vskip 0.5cm
+
+  \item In od tod 
+  \pause
+   $$n=B_{12}+B_{12}+B_{12}+B_{12}+r 
+  \pause
+  \leqslant 
+  \pause
+   B_{53},$$
+  saj lahko $r$ zapišemo kot vstot največ petih četrtih potenc ($r=5=1^4+1^4+1^4+1^4+1^4$).
+  
+  \pause
+
+  \vskip 0.5cm
+
+  \item  Zato $g(4)$ obstaja in je največ $53$.\hfill\qedsymbol
+\end{itemize}
+
+}
+
+\frame{
+\frametitle{Waringov problem, število $g(k)$}
+
+\begin{izrek}[Euler]
+  Za $k\geqslant 2$ je $$g(k) \geqslant \floor{\left(\frac{3}{2}\right)^k} + 2^k -2.$$
+\end{izrek}
+}
+
+\frame{
+\frametitle{Waringov problem, število $g(k)$}
+\framesubtitle{Dokaz izreka}
+
+\begin{itemize}
+
+	\item Označimo  $q:=\floor{\left(\frac{3}{2}\right)^k}$.
+  
+  \pause
+
+
+  \item Oglejmo si število $$n=2^k q - 1 
+  \pause
+   < 
+  \pause
+   3^k.$$
+  
+  \pause
+
+
+  \item Od tod sledi, da lahko le s seštevanjem potenc $1^k$ in $2^k$ pridemo do števila $n$.
+  
+  \pause
+
+
+  \item Da minimiziramo število potrebnih sumandov, uporabimo karseda veliko potenc $2^k$. Najmanjše število sumandov je dano v 
+  \pause
+   $$n=(q-1)2^k + (2^k-1)1^k.$$
+  
+  \pause
+
+  \item Zato za število $n$ potrebujemo najmanj $q+2^k-2$ sumandov. 
+  \pause
+   Od tod sledi $$g(k)\geqslant q + 2^k -2.\;\hfill\qedsymbol$$
+\end{itemize}
+
+}
+
+\frame{
+\frametitle{Waringov problem, število $g(k)$}
+
+\begin{itemize}
+
+	\item Ne potrebujejo pa vsa števila natančno $g(k)$ potenc števila $k$.
+  \pause
+  \vskip 0.5cm
+  
+  \item Vemo, da je $g(3)=9$,\pause  a le števili $23$ in $239$ potrebujeta 9 kubov, \pause samo 15 števil potrebuje 8 kubov in samo $121$ števil potrebuje 7 kubov (Jacobi, preveril do $12\, 000$.)
+  \pause 
+  \vskip 0.5cm
+
+  \item Linnik je leta 1942 pokazal, da za dovolj veliko  naravno število potrebujemo 7 ali manj kubov.
+
+
+\end{itemize}
+
+}
+
+\frame{
+\frametitle{Idealni Waringov problem}
+
+\begin{izrek}
+Označimo $q:=\floor{\left(\frac{3}{2}\right)^k}$ in $p:=\floor{\left(\frac{4}{3}\right)^k}$. Za $k\geqslant 2$ je $$g(k)= 
+  \begin{cases}
+    q + 2^k - 2, & \text{ če }\; 2^k \left(\left(\frac{3}{2}\right)^k - q\right) + q \leqslant 2^k, \\
+    2^k + p +q - \theta, & \text{ sicer},
+  \end{cases}$$ 
+kjer je $$\theta := 
+  \begin{cases} 
+    2, & \text{ če }\; pq + p +q = 2^k,\\
+    3, & \text{ če }\; pq + p + q > 2^k.
+  \end{cases}$$
+\end{izrek}
+}
+
+\frame{
+\frametitle{Idealni Waringov problem}
+
+\begin{itemize}
+  
+  \item Kubina in Wunderlich sta leta 1990 dokazala,da prvi pogoj iz zgornjega izreka velja za vse $k \leqslant 471\, 600\, 000$. 
+  
+  \pause
+
+  \vskip 0.5cm
+
+  \item Leta 1957 je Mahler dokazal, da je izjem v zgornjem izreku največ končno mnogo (če sploh so).
+  
+  \pause
+
+  \vskip 0.5cm
+
+  \item Zato je najbolj verjetno, da je Eulerjeva ocena za število $g(k)$ kar njegova natančna vrednost.
+
+\end{itemize}
+
+}
+
+
+\frame{
+\frametitle{Idealni Waringov problem}
+
+\begin{itemize}
+  
+  \item Kaj manjka do dokaza \emph{idealnega Waringovega problema}?
+
+\end{itemize}
+
+}
+
+\frame{
+\frametitle{Waringov problem, število $G(k)$}
+
+\begin{itemize}
+  
+  \item Oglejmo si še eno število, ki je povezano z Waringovim problemom.
+  
+  \pause
+
+
+\end{itemize}
+
+  \begin{definicija}
+   Naj bo $k\geqslant 2$. Število $G=G(k)$ je najmanjše naravno število, za katero je mogoče vsako \textbf{\emph{dovolj veliko}} naravno število zapisati kot vsoto $G$ $k$-tih potenc nenegativnih celih števil.
+  \end{definicija}
+  
+  \pause
+
+
+  \begin{itemize}
+  
+  \item Očitno je $$G(k)\leqslant g(k).$$
+  
+  \pause
+
+
+  \item Za $k=2$ imamo $G(k)=4$, saj že vemo, da neskončno mnogo števil ni mogoče zapisati kot vsote dveh oz. treh kvadratov.
+
+\end{itemize}
+
+}
+
+\frame{
+\frametitle{Waringov problem, število $G(k)$}
+
+\begin{izrek}
+  Za $k\geqslant 2$ je $$G(k)\geqslant k+1.$$
+\end{izrek}
+
+\pause
+
+
+Imamo še tudi ocene za zgornjo mejo $G(k)$:
+
+\pause
+
+
+\begin{itemize}
+  \item $G(k) <ck\log k$, za neko konstanto $c$.
+  
+  \pause
+
+  \vskip 0.5cm
+  \item Za velike $k$ velja ocena $$G(k) \leqslant k\left(\log k + \log\log k + 2 + \mathcal{O}\left(\frac{\log\log k}{\log k}\right)\right).$$
+\end{itemize}
+
+}
+
+\frame{
+\frametitle{Waringov problem}
+
+\centering\begin{tabular}{|c|c|c|}
+  \hline
+  $k$ & $g(k)$ & $G(k)$ \\
+  \hline
+  $2$ & $4$ & $4$ \\
+  
+  $3$ & $9$ & $\leqslant 7$ \\
+  
+  $4$ & $19$ &  $16$ \\
+  
+  $5$ & $37$ & $\leqslant 17 $ \\
+  
+  $6$ & $73$ & $\leqslant 24$ \\
+  
+  $7$ & $143$ & $\leqslant 31 $ \\
+  
+  $8$ & $279$ & $\leqslant 39$ \\
+  
+  $9$ & $548$ & $\leqslant 47$ \\
+  
+  $10$ & $1079$ & $\leqslant 55$ \\
+  
+  $11$ & $2132$ & $\leqslant 63$ \\
+  
+  $12$ & $4223$ & $\leqslant 72$ \\
+  
+  $13$ & $8384$ & $\leqslant 81$ \\
+  
+  $14$ & $16673$ & $\leqslant 90$ \\
+  \hline
+\end{tabular}
+
+}
+
+
+%%%%%
+\end{document}
